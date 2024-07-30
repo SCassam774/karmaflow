@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  dashboard:
+    image: dashboard_image:latest
+    container_name: dashboard_container
+    volumes:
+      - type: bind
+        source: ./shared_volume
+        target: /app/shared_volume
+    environment:
+      - LOG=1                                # Définition de la variable d'environnement LOG=1
+    ports:
+      - 8050:8050
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
